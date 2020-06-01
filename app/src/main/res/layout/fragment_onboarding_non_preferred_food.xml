@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:text="싫어하는 음식을 골라주세요"
+            android:textColor="#000000"
+            android:textSize="30sp" />
+
+
+        <ToggleButton
+            android:id="@+id/korean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="162dp"
+            android:background="@drawable/button_default_background"
+            android:textColor="@color/grey4"
+            android:text="한식"
+            android:textOff="한식"
+            android:textOn="한식" />
+
+        <ToggleButton
+            android:id="@+id/chinese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="160dp"
+            android:background="@drawable/button_default_background"
+            android:textColor="@color/grey4"
+            android:text="중식"
+            android:textOff="중식"
+            android:textOn="중식" />
+
+        <ToggleButton
+            android:id="@+id/western"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="299dp"
+            android:layout_marginTop="162dp"
+            android:background="@drawable/button_default_background"
+            android:textColor="@color/grey4"
+            android:text="양식"
+            android:textOff="양식"
+            android:textOn="양식" />
+
+
+        <ToggleButton
+            android:id="@+id/japanese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="250dp"
+            android:background="@drawable/button_default_background"
+            android:textColor="@color/grey4"
+            android:text="일식"
+            android:textOff="일식"
+            android:textOn="일식" />
+
+        <ToggleButton
+            android:id="@+id/bunsik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="250dp"
+            android:background="@drawable/button_default_background"
+            android:textColor="@color/grey4"
+            android:text="분식"
+            android:textOff="분식"
+            android:textOn="분식" />
+
+        <ToggleButton
+            android:id="@+id/fastfood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="299dp"
+            android:layout_marginTop="250dp"
+            android:background="@drawable/button_default_background"
+            android:textColor="@color/grey4"
+            android:text="패스트푸드"
+            android:textOff="패스트푸드"
+            android:textOn="패스트푸드" />
+
+
+    </RelativeLayout>
+
+</layout>

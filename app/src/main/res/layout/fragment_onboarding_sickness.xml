@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ToggleButton
+            android:id="@+id/toggleButton6"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="389dp"
+            android:background="@drawable/button_default_background"
+            android:textColor="@color/grey4"
+            android:textOff="위"
+            android:textOn="위" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton5"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="451dp"
+            android:background="@drawable/button_default_background"
+            android:textColor="@color/grey4"
+            android:textOff="장"
+            android:textOn="장" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:text="어떤 질병이 있으신가요?"
+            android:textColor="#000000"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="291dp"
+            android:layout_height="487dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="142dp"
+            android:src="@drawable/body" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton1"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="332dp"
+            android:background="@drawable/button_default_background"
+            android:textColor="@color/grey4"
+            android:textOff="간"
+            android:textOn="간" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton2"
+            android:layout_width="59dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="356dp"
+            android:layout_marginTop="296dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/button_default_background"
+            android:textColor="@color/grey4"
+            android:textOff="심장"
+            android:textOn="심장" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton3"
+            android:layout_width="59dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="357dp"
+            android:layout_marginTop="353dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/button_default_background"
+            android:textColor="@color/grey4"
+            android:textOff="당뇨"
+            android:textOn="당뇨" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton4"
+            android:layout_width="59dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="355dp"
+            android:layout_marginTop="429dp"
+            android:layout_marginEnd="3dp"
+            android:background="@drawable/button_default_background"
+            android:textColor="@color/grey4"
+            android:textOff="콩팥"
+            android:textOn="콩팥" />
+
+    </RelativeLayout>
+</layout>
