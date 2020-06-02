@@ -5,4 +5,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="how_much_is_your_weight">몸무게가 얼마인가요?</string>
+    <string name="nav_main">메인</string>
+    <string name="nav_search">촬영</string>
+    <string name="nav_my_page">MY</string>
 </resources>

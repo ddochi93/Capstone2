@@ -11,6 +11,8 @@ import com.example.harusikdan.R
 import com.example.harusikdan.data.entity.Person
 import com.example.harusikdan.databinding.ActivityOnboardingBinding
 import com.example.harusikdan.feature.onboarding.onboardingpage.*
+import com.example.harusikdan.feature.tab.TabActivity
+import com.example.harusikdan.utils.loadDrawable
 import kotlinx.android.synthetic.main.activity_onboarding.*
 import timber.log.Timber
 
@@ -57,7 +59,13 @@ class OnboardingActivity : AppCompatActivity() {
 
             override fun onPageSelected(position: Int) {
                 circle_indicator.selectDot(position)
-                //fragments[position
+                if(position == 7) {
+                    onboardingBinding.btnNext.loadDrawable(resources.getDrawable(R.drawable.btn_start_cta, null))
+                    isLastPage = true
+                } else if(isLastPage) {
+                    isLastPage = false
+                    onboardingBinding.btnNext.loadDrawable(resources.getDrawable(R.drawable.btn_next_normal, null))
+                }
             }
         } )
 
@@ -70,9 +78,6 @@ class OnboardingActivity : AppCompatActivity() {
             finishOnboarding()
         }
         onboardingBinding.viewPager.setCurrentItem(position + 1, true)
-        var a = Person
-        Timber.e(a.toString())
-        var b = Person.age
     }
 
     override fun onBackPressed() {
@@ -81,7 +86,8 @@ class OnboardingActivity : AppCompatActivity() {
     }
 
     private fun finishOnboarding() {
-        //startActivity(Intent(this,))
+
+        startActivity(Intent(this, TabActivity::class.java))
         finish()
     }
 }

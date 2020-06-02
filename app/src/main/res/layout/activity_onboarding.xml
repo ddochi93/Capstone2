@@ -39,15 +39,6 @@
 
         </com.example.harusikdan.customview.CircleIndicator>
 
-        <ImageView
-            android:id="@+id/btn_skip"
-            android:layout_width="73dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="11dp"
-            android:onClick="@{() -> activity.onNextClickListener()}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/circle_indicator"
-            app:layout_constraintTop_toTopOf="@id/circle_indicator"/>
 
         <ImageView
             android:id="@+id/btn_next"
@@ -55,6 +46,7 @@
             android:layout_height="48dp"
             android:layout_marginEnd="11dp"
             android:onClick="@{() -> activity.onNextClickListener()}"
+            app:srcCompat="@drawable/btn_next_normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/circle_indicator"
             app:layout_constraintTop_toTopOf="@id/circle_indicator"
