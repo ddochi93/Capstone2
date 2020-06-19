@@ -9,7 +9,7 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/bottom_tab_search"
+        android:id="@+id/bottom_tab_capture"
         android:title="@string/nav_search"
         android:icon="@drawable/ic_ar_camera2"
         app:showAsAction="ifRoom"/>
