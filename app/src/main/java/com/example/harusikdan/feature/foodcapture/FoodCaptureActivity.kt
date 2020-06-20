@@ -3,7 +3,9 @@ package com.example.harusikdan.feature.foodcapture
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.res.AssetFileDescriptor
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.ImageDecoder
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
@@ -11,6 +13,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -22,8 +25,10 @@ import com.example.harusikdan.databinding.ActivityFoodCaptureBinding
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import kotlinx.android.synthetic.main.activity_food_capture.*
-import java.io.File
-import java.io.IOException
+import org.tensorflow.lite.Interpreter
+import java.io.*
+import java.nio.MappedByteBuffer
+import java.nio.channels.FileChannel
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -181,9 +186,109 @@ class FoodCaptureActivity : AppCompatActivity() {
     fun runTensorflow() {
         val bitmap = (activityFoodCaptureBinding.imgPicture.drawable as BitmapDrawable).bitmap
         val resizedBitmap = resizeBitmapImage(bitmap, 299)
-        //여기에 추가해라 현석
+
+        val output = Array(1) { FloatArray(104) }
+        val label = arrayOfNulls<String>(104)
+        val am = assets
+        var reader: BufferedReader? = null
+        try {
+            reader = BufferedReader(InputStreamReader(am.open("output_kr_labels.txt")))
+            var tmp: String?
+            var line_i = 0
+            while (reader.readLine().also { tmp = it } != null) {
+                label[line_i] = tmp
+                line_i++
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+
+        try {
+            val batchNum = 0
+            val input = Array(1 ) { Array(299) { Array(299) { FloatArray(3) } } }
+            for (x in 0..298) {
+                for (y in 0..298) {
+                    val pixel = resizedBitmap!!.getPixel(x, y)
+                    input[batchNum][x][y][0] = Color.red(pixel) / 1.0f
+                    input[batchNum][x][y][1] = Color.green(pixel) / 1.0f
+                    input[batchNum][x][y][2] = Color.blue(pixel) / 1.0f
+                }
+            }
+            val lite = getTfliteInterpreter("lite_graph_2.tflite")
+            lite!!.run(input, output)
+            var maxVal = 0.0f
+            var index_1 = 0
+            var index_2 = 0
+            var index_3 = 0
+            var index_4 = 0
+            for (i in 0..103) {
+                if (output[0][i] > maxVal) {
+                    maxVal = output[0][i]
+                    index_1 = i
+                    index_2 = index_1
+                    index_3 = index_2
+                    index_4 = index_3
+                }
+            }
+            val first = label[index_1]
+            val second = label[index_2]
+            val third = label[index_3]
+            val forth = label[index_4]
+
+            val result = arrayOf(first, second, third, forth)
+            Log.d("FoodCaptureActivity", first)
+            Log.d("FoodCaptureActivity", second)
+            Log.d("FoodCaptureActivity", third)
+            Log.d("FoodCaptureActivity", forth)
+        } catch (e : IOException) {
+            e.printStackTrace()
+        }
+    }
+    fun getTfliteInterpreter ( modelPath: String) : Interpreter? {
+        try {
+            return Interpreter(loadModelFile(this, modelPath));
+        }
+        catch (e: Exception){
+            e.printStackTrace();
+        }
+        return null;
     }
 
+    @Throws (IOException::class)
+    fun loadModelFile(activity: Activity, modelPath: String) : MappedByteBuffer {
+       val fileDescriptor : AssetFileDescriptor = activity.getAssets().openFd(modelPath);
+        val inputStream : FileInputStream = FileInputStream(fileDescriptor.getFileDescriptor());
+        val fileChannel : FileChannel = inputStream.getChannel();
+        val startOffset : Long = fileDescriptor.getStartOffset();
+        val declaredLength : Long = fileDescriptor.getDeclaredLength();
+        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
+    }
+//    fun getTfliteInterpreter : Interpreter ( modelPath : String) {
+//        try {
+//            return new Interpreter(loadModelFile(FoodCaptureActivity.this, modelPath));
+//        }
+//        catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+//
+//    fun loadModelFile: MappedByteBuffer (Activity activity, String modelPath) throws IOException {
+//        AssetFileDescriptor fileDescriptor = activity.getAssets().openFd(modelPath);
+//        FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
+//        FileChannel fileChannel = inputStream.getChannel();
+//        startOffset : Long = fileDescriptor.getStartOffset();
+//        declaredLength : Long = fileDescriptor.getDeclaredLength();
+//        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
+//    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
