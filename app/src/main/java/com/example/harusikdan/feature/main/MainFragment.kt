@@ -49,10 +49,7 @@ class MainFragment : Fragment(), MainContract.View {
         mainBinding.weekCalendar.setOnDateClickListener { dateTime ->
             context?.toastShort("You select $dateTime")
         }
-//        mainBinding..apply {
-//            layoutManager = LinearLayoutManager(context)
-//            adapter = FoodInfoAdapter(mFoodList, foodImageClicked)
-//        }
+
     }
 
 

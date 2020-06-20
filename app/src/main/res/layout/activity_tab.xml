@@ -36,8 +36,8 @@
             android:background="@drawable/bottom"
             app:elevation="0dp"
             app:labelVisibilityMode="labeled"
+            app:selectListener="@{activity.listener}"
         />
-        <!--app:selectListener="@{activity.listener}"-->
 
 
 

@@ -7,6 +7,7 @@ import com.eroom.domain.utils.toastShort
 import com.example.harusikdan.R
 import com.example.harusikdan.databinding.ActivityTabBinding
 import com.example.harusikdan.feature.main.MainFragment
+import com.example.harusikdan.feature.mypage.MyPageFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class TabActivity : AppCompatActivity(), TabContract.View {
@@ -48,7 +49,7 @@ class TabActivity : AppCompatActivity(), TabContract.View {
             }
             2 -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.main_container, MainFragment.newInstance()).commit()
+                    .replace(R.id.main_container, MyPageFragment.newInstance()).commit()
             }
             3 -> {
                 supportFragmentManager.beginTransaction()

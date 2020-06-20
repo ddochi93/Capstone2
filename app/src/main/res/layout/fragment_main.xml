@@ -358,7 +358,8 @@
                                 <ImageView
                                     android:id="@+id/lunch_image"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent" />
+                                    android:layout_height="match_parent"
+                                    android:onClick="@{() -> fragment.imageClicked()}"/>
 
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -408,7 +409,8 @@
                                 <ImageView
                                     android:id="@+id/dinner_image"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent" />
+                                    android:layout_height="match_parent"
+                                    android:onClick="@{() -> fragment.imageClicked()}"/>
 
 
                             </androidx.constraintlayout.widget.ConstraintLayout>

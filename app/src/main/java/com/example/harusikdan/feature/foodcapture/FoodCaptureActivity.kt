@@ -245,7 +245,7 @@ class FoodCaptureActivity : AppCompatActivity() {
             val forth = label[index_4]
 
             val result = arrayOf(first, second, third, forth)
-            Log.d("FoodCaptureActivity",first)
+            Log.d("FoodCaptureActivity", first)
             Log.d("FoodCaptureActivity", second)
             Log.d("FoodCaptureActivity", third)
             Log.d("FoodCaptureActivity", forth)

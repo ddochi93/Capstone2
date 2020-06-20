@@ -24,7 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.1"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:background="@color/grey2" />
 
 
         <de.hdodenhof.circleimageview.CircleImageView
