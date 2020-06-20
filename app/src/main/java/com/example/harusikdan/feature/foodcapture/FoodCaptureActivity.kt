@@ -5,11 +5,12 @@ import android.app.Activity
 import android.content.Intent
 import android.content.res.AssetFileDescriptor
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.ImageDecoder
+import android.graphics.Matrix
 import android.graphics.drawable.BitmapDrawable
+import android.media.ExifInterface
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -24,7 +25,6 @@ import com.example.harusikdan.R
 import com.example.harusikdan.databinding.ActivityFoodCaptureBinding
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
-import kotlinx.android.synthetic.main.activity_food_capture.*
 import org.tensorflow.lite.Interpreter
 import java.io.*
 import java.nio.MappedByteBuffer
@@ -180,7 +180,7 @@ class FoodCaptureActivity : AppCompatActivity() {
                 newHeight = maxResolution
             }
         }
-        return Bitmap.createScaledBitmap(source, newWidth, newHeight, true)
+        return Bitmap.createScaledBitmap(source, 299, 299, true)
     }
 
     fun runTensorflow() {
@@ -210,10 +210,11 @@ class FoodCaptureActivity : AppCompatActivity() {
                 }
             }
         }
+        Log.d("FoodCaptureActivity", "done read label")
 
         try {
             val batchNum = 0
-            val input = Array(1 ) { Array(299) { Array(299) { FloatArray(3) } } }
+            val input = Array(1) { Array(299) { Array(299) { FloatArray(3) } } }
             for (x in 0..298) {
                 for (y in 0..298) {
                     val pixel = resizedBitmap!!.getPixel(x, y)
@@ -232,10 +233,10 @@ class FoodCaptureActivity : AppCompatActivity() {
             for (i in 0..103) {
                 if (output[0][i] > maxVal) {
                     maxVal = output[0][i]
-                    index_1 = i
-                    index_2 = index_1
-                    index_3 = index_2
                     index_4 = index_3
+                    index_3 = index_2
+                    index_2 = index_1
+                    index_1 = i
                 }
             }
             val first = label[index_1]
@@ -244,31 +245,31 @@ class FoodCaptureActivity : AppCompatActivity() {
             val forth = label[index_4]
 
             val result = arrayOf(first, second, third, forth)
-            Log.d("FoodCaptureActivity", first)
+            Log.d("FoodCaptureActivity",first)
             Log.d("FoodCaptureActivity", second)
             Log.d("FoodCaptureActivity", third)
             Log.d("FoodCaptureActivity", forth)
-        } catch (e : IOException) {
+        } catch (e: IOException) {
             e.printStackTrace()
         }
     }
-    fun getTfliteInterpreter ( modelPath: String) : Interpreter? {
+
+    fun getTfliteInterpreter(modelPath: String): Interpreter? {
         try {
             return Interpreter(loadModelFile(this, modelPath));
-        }
-        catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace();
         }
         return null;
     }
 
-    @Throws (IOException::class)
-    fun loadModelFile(activity: Activity, modelPath: String) : MappedByteBuffer {
-       val fileDescriptor : AssetFileDescriptor = activity.getAssets().openFd(modelPath);
-        val inputStream : FileInputStream = FileInputStream(fileDescriptor.getFileDescriptor());
-        val fileChannel : FileChannel = inputStream.getChannel();
-        val startOffset : Long = fileDescriptor.getStartOffset();
-        val declaredLength : Long = fileDescriptor.getDeclaredLength();
+    @Throws(IOException::class)
+    fun loadModelFile(activity: Activity, modelPath: String): MappedByteBuffer {
+        val fileDescriptor: AssetFileDescriptor = activity.getAssets().openFd(modelPath);
+        val inputStream: FileInputStream = FileInputStream(fileDescriptor.getFileDescriptor());
+        val fileChannel: FileChannel = inputStream.getChannel();
+        val startOffset: Long = fileDescriptor.getStartOffset();
+        val declaredLength: Long = fileDescriptor.getDeclaredLength();
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
     }
 //    fun getTfliteInterpreter : Interpreter ( modelPath : String) {
@@ -290,23 +291,57 @@ class FoodCaptureActivity : AppCompatActivity() {
 //        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
 //    }
 
+    private fun exifOrientationToDegrees(exifOrientation: Int): Int {
+        if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_90) {
+            return 90
+        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_180) {
+            return 180
+        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_270) {
+            return 270
+        }
+        return 0
+    }
+
+    private fun rotate(bitmap: Bitmap, degree: Float): Bitmap? {
+        val matrix = Matrix()
+        matrix.postRotate(degree)
+        return Bitmap.createBitmap(
+            bitmap,
+            0,
+            0,
+            bitmap.width,
+            bitmap.height,
+            matrix,
+            true
+        )
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            val file = File(imageFilePath)
-            if (Build.VERSION.SDK_INT < 28) {
-                val bitmap = MediaStore.Images.Media
-                    .getBitmap(contentResolver, Uri.fromFile(file))
-                img_picture.setImageBitmap(bitmap)
-            } else {
-                val decode = ImageDecoder.createSource(
-                    this.contentResolver,
-                    Uri.fromFile(file)
-                )
-                val bitmap = ImageDecoder.decodeBitmap(decode)
-                img_picture.setImageBitmap(bitmap)
+            val bitmap = BitmapFactory.decodeFile(imageFilePath)
+            var exif: ExifInterface? = null
+            try {
+                exif = ExifInterface(imageFilePath)
+            } catch (e: IOException) {
+                e.printStackTrace()
             }
+            val exifOrientation: Int
+            val exifDegree: Int
+            if (exif != null) {
+                exifOrientation = exif.getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_NORMAL
+                )
+                exifDegree = exifOrientationToDegrees(exifOrientation)
+            } else {
+                exifDegree = 0
+            }
+            activityFoodCaptureBinding.imgPicture.setImageBitmap(
+                rotate(bitmap, exifDegree.toFloat())
+            )
+            activityFoodCaptureBinding.tensorButton.visibility = View.VISIBLE
         }
 
         if (requestCode == GET_GALLERY_IMAGE && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
