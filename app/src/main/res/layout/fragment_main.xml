@@ -27,8 +27,8 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:numOfPages="150"
-            app:selectedBgColor="@color/grey5"
-            app:todaysDateBgColor="@color/grey5"
+            app:selectedBgColor="@color/grey3"
+            app:todaysDateBgColor="@color/grey3"
             app:weekBackgroundColor="@color/orgDefault" />
 
         <ScrollView
