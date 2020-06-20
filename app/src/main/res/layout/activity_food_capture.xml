@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="activity"
+            type="com.example.harusikdan.feature.foodcapture.FoodCaptureActivity" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".feature.foodcapture.FoodCaptureActivity">
+
+
+        <ImageView
+            android:id="@+id/img_picture"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            tools:srcCompat="@tools:sample/avatars" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/capture_btn"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:civ_border_color="#00ffffff"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.9"
+            android:src="@drawable/circle_layout"
+            android:onClick="@{ () -> activity.startCapture()}"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/gallery_preview"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/capture_btn"
+            app:layout_constraintVertical_bias="0.88"
+            app:layout_constraintHorizontal_bias="0.7"
+            android:src="@drawable/photo"
+            android:onClick="@{() -> activity.galleryPreviewClicked()}"/>
+
+        <Button
+            android:id="@+id/tensor_button"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
+            android:elevation="0dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="무슨 음식일까요?"
+            android:onClick="@{() -> activity.runTensorflow()}"
+            android:textColor="@color/orgDefault"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/img_picture"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/capture_btn"
+            app:layout_constraintVertical_bias="0.2"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

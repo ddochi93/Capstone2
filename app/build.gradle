@@ -116,4 +116,11 @@ dependencies {
     implementation 'io.reactivex:rxandroid:1.2.1'
     implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
 
+    //photoview
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
+
+    //Ted Permission
+    implementation 'gun0912.ted:tedpermission:2.0.0'
+
 }
