@@ -14,23 +14,31 @@ import com.example.harusikdan.globalconst.Consts
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
+import org.koin.android.ext.android.get
 
 
-class FoodSelectActivity : AppCompatActivity() {
+class FoodSelectActivity : AppCompatActivity(), FoodSelectContract.View {
     private lateinit var foodSelectBinding: ActivityFoodSelectBinding
+    private lateinit var presenter: FoodSelectPresenter
     private val realm = Realm.getDefaultInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initPresenter()
         setUpDataBinding()
         initView()
         setRadioButtonListener()
+    }
+
+    private fun initPresenter() {
+        presenter = FoodSelectPresenter(this, get())
     }
 
     private fun setUpDataBinding() {
         foodSelectBinding = DataBindingUtil.setContentView(this, R.layout.activity_food_select)
         foodSelectBinding.activity = this
     }
+
 
     private fun initView() {
         val foodNameList = intent.getStringArrayListExtra(Consts.SELECT_FOOD_LIST)
@@ -47,6 +55,7 @@ class FoodSelectActivity : AppCompatActivity() {
                 buttonView.background = ContextCompat.getDrawable(this, R.drawable.button_pressed_background)
                 buttonView.setTextColor(ContextCompat.getColor(this, R.color.orgDefault))
                 Food.foodName = buttonView.text.toString().trim()
+                presenter.getFoodInfoByFoodName(Food.foodName.toString())
                 insertFoodToDb()
             } else {
                 buttonView.background = ContextCompat.getDrawable(this, R.drawable.button_default_background)
@@ -61,6 +70,7 @@ class FoodSelectActivity : AppCompatActivity() {
                 buttonView.background = ContextCompat.getDrawable(this, R.drawable.button_pressed_background)
                 buttonView.setTextColor(ContextCompat.getColor(this, R.color.orgDefault))
                 Food.foodName = buttonView.text.toString().trim()
+                presenter.getFoodInfoByFoodName(Food.foodName.toString())
                 insertFoodToDb()
             } else {
                 buttonView.background = ContextCompat.getDrawable(this, R.drawable.button_default_background)
@@ -74,6 +84,7 @@ class FoodSelectActivity : AppCompatActivity() {
                 buttonView.background = ContextCompat.getDrawable(this, R.drawable.button_pressed_background)
                 buttonView.setTextColor(ContextCompat.getColor(this, R.color.orgDefault))
                 Food.foodName = buttonView.text.toString().trim()
+                presenter.getFoodInfoByFoodName(Food.foodName.toString())
                 insertFoodToDb()
             } else {
                 buttonView.background = ContextCompat.getDrawable(this, R.drawable.button_default_background)
@@ -87,6 +98,7 @@ class FoodSelectActivity : AppCompatActivity() {
                 buttonView.background = ContextCompat.getDrawable(this, R.drawable.button_pressed_background)
                 buttonView.setTextColor(ContextCompat.getColor(this, R.color.orgDefault))
                 Food.foodName = buttonView.text.toString().trim()
+                presenter.getFoodInfoByFoodName(Food.foodName.toString())
                 insertFoodToDb()
             } else {
                 buttonView.background = ContextCompat.getDrawable(this, R.drawable.button_default_background)

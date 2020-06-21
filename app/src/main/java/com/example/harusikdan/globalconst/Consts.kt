@@ -10,5 +10,6 @@ class Consts {
         const val DIALOG_CANCEL = "DIALOG_CANCEL"
 
         const val SELECT_FOOD_LIST = "SELECT_FOOD_LIST"
+        const val BASE_URL = "https://4e650a8a99ab.ngrok.io"
     }
 }
