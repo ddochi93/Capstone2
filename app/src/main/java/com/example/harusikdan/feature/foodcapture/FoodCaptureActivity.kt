@@ -23,6 +23,7 @@ import androidx.databinding.DataBindingUtil
 import com.eroom.domain.utils.toastShort
 import com.example.harusikdan.R
 import com.example.harusikdan.databinding.ActivityFoodCaptureBinding
+import com.example.harusikdan.globalconst.Consts
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import org.tensorflow.lite.Interpreter
@@ -31,6 +32,7 @@ import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class FoodCaptureActivity : AppCompatActivity() {
     private lateinit var activityFoodCaptureBinding: ActivityFoodCaptureBinding
@@ -242,13 +244,21 @@ class FoodCaptureActivity : AppCompatActivity() {
             val first = label[index_1]
             val second = label[index_2]
             val third = label[index_3]
-            val forth = label[index_4]
+            val fourth = label[index_4]
 
-            val result = arrayOf(first, second, third, forth)
-            Log.d("FoodCaptureActivity", first)
-            Log.d("FoodCaptureActivity", second)
-            Log.d("FoodCaptureActivity", third)
-            Log.d("FoodCaptureActivity", forth)
+            val result: ArrayList<String?> = ArrayList()
+            result.add(first)
+            result.add(second)
+            result.add(third)
+            result.add(fourth)
+//            Log.d("FoodCaptureActivity", first)
+//            Log.d("FoodCaptureActivity", second)
+//            Log.d("FoodCaptureActivity", third)
+//            Log.d("FoodCaptureActivity", fourth)
+
+            val intent = Intent(this, FoodSelectActivity::class.java)
+            intent.putStringArrayListExtra(Consts.SELECT_FOOD_LIST, result)
+            startActivity(intent)
         } catch (e: IOException) {
             e.printStackTrace()
         }

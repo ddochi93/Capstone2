@@ -8,5 +8,7 @@ class Consts {
         const val DIALOG_RESULT = "DIALOG_RESULT"
         const val DIALOG_CONFIRM = "DIALOG_CONFIRM"
         const val DIALOG_CANCEL = "DIALOG_CANCEL"
+
+        const val SELECT_FOOD_LIST = "SELECT_FOOD_LIST"
     }
 }

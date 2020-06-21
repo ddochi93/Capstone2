@@ -1,8 +1,11 @@
 package com.example.harusikdan.data.entity
 
 import android.graphics.Bitmap
+import java.util.*
 
-data class Food(
-    var foodImage: Bitmap?,
-    var foodName: String?
-)
+object Food {
+    var foodImage: Bitmap? = null
+    var foodName: String? = null
+    var mealTime: Date? = null
+    var date: Date? = null
+}
