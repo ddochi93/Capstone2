@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
-import androidx.viewbinding.BuildConfig
 import com.example.harusikdan.R
 import com.example.harusikdan.databinding.ActivityHaruDialogBinding
 import com.example.harusikdan.globalconst.Consts

@@ -283,13 +283,26 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="아침 0Kcal"
-                                android:textColor="#ff0000"
+                                android:textColor="@color/orgDefault"
                                 android:textSize="16sp"
                                 app:layout_constraintHorizontal_bias="0.1"
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintVertical_bias="0.3" />
+                            <TextView
+                                android:id="@+id/breakfast_menu_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="김치찌개"
+                                android:textColor="#000000"
+                                android:textStyle="bold"
+                                android:textSize="16sp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                android:layout_marginTop="260dp"
+                                />
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
@@ -310,7 +323,7 @@
                                     android:id="@+id/breakfast_image"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:onClick="@{() -> fragment.imageClicked()}"/>
+                                    android:onClick="@{() -> fragment.breakfastImageClicked()}"/>
 
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -332,13 +345,27 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="점심 0Kcal"
-                                android:textColor="#ff0000"
+                                android:textColor="@color/orgDefault"
                                 android:textSize="16sp"
                                 app:layout_constraintHorizontal_bias="0.1"
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintVertical_bias="0.3" />
+
+                            <TextView
+                                android:id="@+id/lunch_menu_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="순두부"
+                                android:textColor="#000000"
+                                android:textStyle="bold"
+                                android:textSize="16sp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                android:layout_marginTop="260dp"
+                                />
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
@@ -359,7 +386,7 @@
                                     android:id="@+id/lunch_image"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:onClick="@{() -> fragment.imageClicked()}"/>
+                                    android:onClick="@{() -> fragment.lunchImageClicked()}"/>
 
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -383,13 +410,26 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="저녁 0Kcal"
-                                android:textColor="#ff0000"
+                                android:textColor="@color/orgDefault"
                                 android:textSize="16sp"
                                 app:layout_constraintHorizontal_bias="0.1"
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintVertical_bias="0.3" />
+                            <TextView
+                                android:id="@+id/dinner_menu_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="순두부"
+                                android:textColor="#000000"
+                                android:textStyle="bold"
+                                android:textSize="16sp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                android:layout_marginTop="260dp"
+                                />
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
@@ -410,7 +450,7 @@
                                     android:id="@+id/dinner_image"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:onClick="@{() -> fragment.imageClicked()}"/>
+                                    android:onClick="@{() -> fragment.dinnerImageClicked()}"/>
 
 
                             </androidx.constraintlayout.widget.ConstraintLayout>

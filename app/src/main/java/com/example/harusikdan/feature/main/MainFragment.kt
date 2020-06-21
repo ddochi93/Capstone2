@@ -3,20 +3,28 @@ package com.example.harusikdan.feature.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.eroom.domain.utils.toastShort
 import com.example.harusikdan.data.entity.Food
+import com.example.harusikdan.data.entity.FoodVO
 import com.example.harusikdan.databinding.FragmentMainBinding
 import com.example.harusikdan.feature.foodcapture.FoodCaptureActivity
+import io.realm.Realm
+import io.realm.RealmResults
+import io.realm.kotlin.where
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainFragment : Fragment(), MainContract.View {
     private lateinit var mainBinding: FragmentMainBinding
     private lateinit var presenter: MainPresenter
+    private val realm = Realm.getDefaultInstance()
 
     //private lateinit var mFoodInfoAdapter: FoodInfoAdapter
     private var mFoodList: ArrayList<Food> = ArrayList()
@@ -47,7 +55,10 @@ class MainFragment : Fragment(), MainContract.View {
 
     private fun initView() {
         mainBinding.weekCalendar.setOnDateClickListener { dateTime ->
-            context?.toastShort("You select $dateTime")
+            val foodDate = dateTime.toString().substring(0,10)
+            context?.toastShort(foodDate)
+            Food.date = foodDate.trim()
+            loadFromDB(foodDate.trim())
         }
 
     }
@@ -55,11 +66,54 @@ class MainFragment : Fragment(), MainContract.View {
 
     override fun onResume() {
         super.onResume()
+        val today = getCurrentDateTime()
+        val todayString = today.toString("yyyy-MM-dd")
+        requireContext().toastShort(todayString.toString().trim())
+        Food.date = todayString.trim()
+        loadFromDB(todayString)
     }
 
 
-    fun imageClicked() {
+    fun breakfastImageClicked() {
+        Food.mealTime = "breakfast"
         startActivity(Intent(context, FoodCaptureActivity::class.java))
+    }
+
+    fun lunchImageClicked() {
+        Food.mealTime = "lunch"
+        startActivity(Intent(context, FoodCaptureActivity::class.java))
+    }
+
+    fun dinnerImageClicked() {
+        Food.mealTime = "dinner"
+        startActivity(Intent(context, FoodCaptureActivity::class.java))
+    }
+
+    private fun getCurrentDateTime(): Date {
+        return Calendar.getInstance().time
+    }
+
+    fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
+        val formatter = SimpleDateFormat(format, locale)
+        return formatter.format(this)
+    }
+
+    private fun loadFromDB(selectedDay: String) {
+        val realmResult: RealmResults<FoodVO> = realm.where<FoodVO>().equalTo("date",selectedDay).findAll()
+        val breakfast = realmResult.where().equalTo("mealTime","breakfast").findFirst()
+        val lunch = realmResult.where().equalTo("mealTime","lunch").findFirst()
+        val dinner = realmResult.where().equalTo("mealTime","dinner").findFirst()
+
+        mainBinding.breakfastMenuName.text = breakfast?.foodName
+        mainBinding.lunchMenuName.text = lunch?.foodName
+        mainBinding.dinnerMenuName.text = dinner?.foodName
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        realm.close()
+
     }
 
 }
