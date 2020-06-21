@@ -11,8 +11,8 @@ object Person {
     var age = 0
     var activity //5th fragment
             = 0
-    var targetCalorie //이건 서버에서 자동 설정
-            = 0
+    var targetCalorie
+            = 0.0
     var diseaseList: ArrayList<Int> = ArrayList()
 
 
@@ -20,6 +20,9 @@ object Person {
     var nonPreferredList: ArrayList<String> = ArrayList()
 
 
+    fun setTargetCalorie()  {
+        targetCalorie =  ((height - 100) * 0.9) * activity
+    }
 
 
     override fun toString(): String {

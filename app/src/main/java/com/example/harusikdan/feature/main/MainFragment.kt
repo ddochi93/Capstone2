@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.eroom.domain.utils.toastShort
 import com.example.harusikdan.data.entity.Food
 import com.example.harusikdan.data.entity.FoodVO
+import com.example.harusikdan.data.entity.Person
 import com.example.harusikdan.databinding.FragmentMainBinding
 import com.example.harusikdan.feature.foodcapture.FoodCaptureActivity
 import io.realm.Realm
@@ -60,6 +61,8 @@ class MainFragment : Fragment(), MainContract.View {
             Food.date = foodDate.trim()
             loadFromDB(foodDate.trim())
         }
+
+        mainBinding.totalCalorieTv.text = "총 섭취량 0 / ${Person.targetCalorie.toString()}"
 
     }
 

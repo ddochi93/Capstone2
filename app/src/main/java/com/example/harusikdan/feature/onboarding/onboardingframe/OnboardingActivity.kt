@@ -43,7 +43,7 @@ class OnboardingActivity : AppCompatActivity() {
 
     private fun initViewPager() {
         onboardingBinding.viewPager.adapter = pagerAdapter
-        onboardingBinding.viewPager.offscreenPageLimit = 7 //조절필요
+        onboardingBinding.viewPager.offscreenPageLimit = 5 //조절필요
 
         onboardingBinding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
@@ -59,7 +59,7 @@ class OnboardingActivity : AppCompatActivity() {
 
             override fun onPageSelected(position: Int) {
                 circle_indicator.selectDot(position)
-                if(position == 7) {
+                if(position == 5) {
                     onboardingBinding.btnNext.loadDrawable(resources.getDrawable(R.drawable.btn_start_cta, null))
                     isLastPage = true
                 } else if(isLastPage) {
@@ -69,12 +69,12 @@ class OnboardingActivity : AppCompatActivity() {
             }
         } )
 
-        onboardingBinding.circleIndicator.createDotPanel(8, R.drawable.indicator_dot_off, R.drawable.indicator_dot_on, 0)
+        onboardingBinding.circleIndicator.createDotPanel(6, R.drawable.indicator_dot_off, R.drawable.indicator_dot_on, 0)
     }
 
     fun onNextClickListener() {
         val position: Int = onboardingBinding.viewPager.currentItem
-        if (position == 7) {
+        if (position == 5) {
             finishOnboarding()
         }
         onboardingBinding.viewPager.setCurrentItem(position + 1, true)
@@ -86,7 +86,7 @@ class OnboardingActivity : AppCompatActivity() {
     }
 
     private fun finishOnboarding() {
-
+        Person.setTargetCalorie()
         startActivity(Intent(this, TabActivity::class.java))
         finish()
     }

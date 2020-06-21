@@ -18,13 +18,11 @@ class OnboardingAdapter(fm: FragmentManager, private val activity: OnboardingAct
             3 -> activity.fragments[3]
             4 -> activity.fragments[4]
             5 -> activity.fragments[5]
-            6 -> activity.fragments[6]
-            7 -> activity.fragments[7]
             else -> activity.fragments[1]
         }
     }
 
-    override fun getCount() = 8
+    override fun getCount() = 6
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         super.destroyItem(container, position, `object`)

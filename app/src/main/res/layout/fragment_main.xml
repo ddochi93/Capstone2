@@ -96,7 +96,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="12dp"
                                 android:max="100"
-                                android:progress="50"
+                                android:progress="0"
                                 android:progressDrawable="@drawable/progressbar_progressbar1" />
                             <!--// 프로그레스바 -->
                         </LinearLayout>
@@ -267,7 +267,6 @@
                         android:id="@+id/food_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -335,7 +334,6 @@
                             android:id="@+id/lunch_layout"
                             android:layout_width="match_parent"
                             android:layout_height="300dp"
-                            android:layout_marginTop="10dp"
                             android:background="@color/colorWhite"
                             android:backgroundTint="@color/colorWhite"
                             app:layout_constraintTop_toBottomOf="@id/breakfast_layout">
@@ -398,7 +396,6 @@
                             android:id="@+id/dinner_layout"
                             android:layout_width="match_parent"
                             android:layout_height="300dp"
-                            android:layout_marginTop="10dp"
                             android:layout_marginBottom="70dp"
                             android:background="@color/colorWhite"
                             android:backgroundTint="@color/colorWhite"

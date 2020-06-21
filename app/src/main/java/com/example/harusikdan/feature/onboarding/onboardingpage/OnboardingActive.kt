@@ -39,7 +39,7 @@ class OnboardingActive : Fragment() {
             if(isChecked) {
                 buttonView.background = ContextCompat.getDrawable(requireContext(), R.drawable.button_pressed_background)
                 buttonView.setTextColor(ContextCompat.getColor(requireContext(), R.color.orgDefault))
-                Person.activity = 1
+                Person.activity = 40
             } else {
                 buttonView.background = ContextCompat.getDrawable(requireContext(), R.drawable.button_default_background)
                 buttonView.setTextColor(ContextCompat.getColor(requireContext(), R.color.grey4))
@@ -50,7 +50,7 @@ class OnboardingActive : Fragment() {
             if(isChecked) {
                 buttonView.background = ContextCompat.getDrawable(requireContext(), R.drawable.button_pressed_background)
                 buttonView.setTextColor(ContextCompat.getColor(requireContext(), R.color.orgDefault))
-                Person.activity = 2
+                Person.activity = 33
             } else {
                 buttonView.background = ContextCompat.getDrawable(requireContext(), R.drawable.button_default_background)
                 buttonView.setTextColor(ContextCompat.getColor(requireContext(), R.color.grey4))
@@ -61,7 +61,7 @@ class OnboardingActive : Fragment() {
             if(isChecked) {
                 buttonView.background = ContextCompat.getDrawable(requireContext(), R.drawable.button_pressed_background)
                 buttonView.setTextColor(ContextCompat.getColor(requireContext(), R.color.orgDefault))
-                Person.activity = 3
+                Person.activity = 25
             } else {
                 buttonView.background = ContextCompat.getDrawable(requireContext(), R.drawable.button_default_background)
                 buttonView.setTextColor(ContextCompat.getColor(requireContext(), R.color.grey4))
@@ -72,7 +72,7 @@ class OnboardingActive : Fragment() {
             if(isChecked) {
                 buttonView.background = ContextCompat.getDrawable(requireContext(), R.drawable.button_pressed_background)
                 buttonView.setTextColor(ContextCompat.getColor(requireContext(), R.color.orgDefault))
-                Person.activity = 4
+                Person.activity = 20
             } else {
                 buttonView.background = ContextCompat.getDrawable(requireContext(), R.drawable.button_default_background)
                 buttonView.setTextColor(ContextCompat.getColor(requireContext(), R.color.grey4))
