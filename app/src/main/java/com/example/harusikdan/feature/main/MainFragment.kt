@@ -12,7 +12,6 @@ import com.example.harusikdan.data.entity.Food
 import com.example.harusikdan.data.entity.FoodVO
 import com.example.harusikdan.databinding.FragmentMainBinding
 import com.example.harusikdan.feature.foodcapture.FoodCaptureActivity
-import io.ktor.http.auth.HttpAuthHeader.Parameters.Realm
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.kotlin.where
@@ -25,7 +24,7 @@ import kotlin.collections.ArrayList
 class MainFragment : Fragment(), MainContract.View {
     private lateinit var mainBinding: FragmentMainBinding
     private lateinit var presenter: MainPresenter
-
+    private val realm = Realm.getDefaultInstance()
 
     //private lateinit var mFoodInfoAdapter: FoodInfoAdapter
     private var mFoodList: ArrayList<Food> = ArrayList()
@@ -59,6 +58,7 @@ class MainFragment : Fragment(), MainContract.View {
             val foodDate = dateTime.toString().substring(0,10)
             context?.toastShort(foodDate)
             Food.date = foodDate.trim()
+            loadFromDB(foodDate.trim())
         }
 
     }
@@ -70,6 +70,7 @@ class MainFragment : Fragment(), MainContract.View {
         val todayString = today.toString("yyyy-MM-dd")
         requireContext().toastShort(todayString.toString().trim())
         Food.date = todayString.trim()
+        loadFromDB(todayString)
     }
 
 
@@ -97,11 +98,21 @@ class MainFragment : Fragment(), MainContract.View {
         return formatter.format(this)
     }
 
+    private fun loadFromDB(selectedDay: String) {
+        val realmResult: RealmResults<FoodVO> = realm.where<FoodVO>().equalTo("date",selectedDay).findAll()
+        val breakfast = realmResult.where().equalTo("mealTime","breakfast").findFirst()
+        val lunch = realmResult.where().equalTo("mealTime","lunch").findFirst()
+        val dinner = realmResult.where().equalTo("mealTime","dinner").findFirst()
 
+        mainBinding.breakfastMenuName.text = breakfast?.foodName
+        mainBinding.lunchMenuName.text = lunch?.foodName
+        mainBinding.dinnerMenuName.text = dinner?.foodName
+
+    }
 
     override fun onDestroy() {
         super.onDestroy()
-
+        realm.close()
 
     }
 

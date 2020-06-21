@@ -19,6 +19,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.exifinterface.media.ExifInterface
 import com.eroom.domain.utils.toastShort
 import com.example.harusikdan.R
+import com.example.harusikdan.data.entity.MenuPosInfo
 import com.example.harusikdan.databinding.ActivityMenuCaptureBinding
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
@@ -30,9 +31,10 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import org.koin.android.ext.android.get
 
 
-class MenuCaptureActivity : AppCompatActivity() {
+class MenuCaptureActivity : AppCompatActivity(), MenuCaptureContract.View {
     // TODO: Rename and change types of parameters
     private lateinit var menuCaptureBinding: ActivityMenuCaptureBinding //체크해줘야함
     private val REQUEST_IMAGE_CAPTURE = 672
@@ -41,6 +43,8 @@ class MenuCaptureActivity : AppCompatActivity() {
     private lateinit var imageFilePath: String
     private var photoUri: Uri? = null
 
+    private lateinit var presenter: MenuCapturePresenter
+
     companion object {
         @JvmStatic
         fun newInstance() = MenuCaptureActivity()
@@ -48,8 +52,13 @@ class MenuCaptureActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initPresenter()
         setUpDataBinding()
         settingPermission()
+    }
+
+    private fun initPresenter() {
+        presenter = MenuCapturePresenter(this , get())
     }
 
     private fun setUpDataBinding() {
@@ -162,7 +171,6 @@ class MenuCaptureActivity : AppCompatActivity() {
 
             //var p = Array<IntArray>(4,{ IntArray(2) })
             var rectList: ArrayList<RectPos> = ArrayList()
-            var sendList: ArrayList<RectPos> = ArrayList()
             var textList: ArrayList<String> = ArrayList()
 
             val result = detector.processImage(image).addOnSuccessListener { firebaseVisionText -> //사진에서 글자인식하고 return한 값 분석
@@ -182,6 +190,7 @@ class MenuCaptureActivity : AppCompatActivity() {
                         val lineFrame = line.boundingBox
                         stri = stri + lineText +'\n' //화면에 출력되는 문자는 line의 text값들이다.
                         textList.add(lineText)
+
                         rectList.add(RectPos(
                             Point(lineFrame!!.left,lineFrame.top),
                             Point(lineFrame.right,lineFrame.bottom), 0))
@@ -194,53 +203,44 @@ class MenuCaptureActivity : AppCompatActivity() {
                 var fileName: String? = "myImage" //no .png or .jpg needed
 
                 bitmap = image.bitmap
-//                for(i in List){
-//                    sendList.add(RectPos(Point(rectList[i[0]].leftTop),Point(rectList[i[0]].rightBottom),i[1])
+
+                var a = textList
+
+                presenter.getMenuPosInfo(textList, bitmap, rectList)
+//                var sendList: ArrayList<RectPos> = ArrayList()
+//                for(i in menuPos){
+//                    sendList.add(RectPos(Point(rectList[i[0]].leftTop),Point(rectList[i[0]].rightBottom),i[1]))
 //                }
-
-
-
-//                try {
-//                    val bytes = ByteArrayOutputStream()
-//                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-//                    val fo: FileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE)
-//                    fo.write(bytes.toByteArray())
-//                    // remember close file output
-//                    fo.close()
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                    fileName = null
-//                }
-                //-----------------------
-
-//                intent = Intent(applicationContext,ResultActivity::class.java)
-//                intent.putParcelableArrayListExtra("result",sendList)
-//                intent.putExtra("img", fileName)
 //
-//                startActivity(intent)
-                rectList.map {
-
-                    if(it.leftTop!!.x>0){
-                        it.leftTop!!.x--
-                    }
-                    if(it.leftTop!!.y>0){
-                        it.leftTop!!.y--
-                    }
-                    if(it.rightBottom!!.x>0){
-                        it.rightBottom!!.x--
-                    }
-                    if(it.rightBottom!!.y>0){
-                        it.rightBottom!!.y--
-                    }
-
-                    bitmap = drawRect(it.leftTop!!.x, it.leftTop!!.y, it.rightBottom!!.x, it.rightBottom!!.y, bitmap, it.color!!)
-                }
-                menuCaptureBinding.imgPicture.setImageBitmap(bitmap)
+//                sendList.map {
+//
+//                    if(it.leftTop!!.x>0){
+//                        it.leftTop!!.x--
+//                    }
+//                    if(it.leftTop!!.y>0){
+//                        it.leftTop!!.y--
+//                    }
+//                    if(it.rightBottom!!.x>0){
+//                        it.rightBottom!!.x--
+//                    }
+//                    if(it.rightBottom!!.y>0){
+//                        it.rightBottom!!.y--
+//                    }
+//
+//                    bitmap = drawRect(it.leftTop!!.x, it.leftTop!!.y, it.rightBottom!!.x, it.rightBottom!!.y, bitmap, it.color!!)
+//                }
+//                menuCaptureBinding.imgPicture.setImageBitmap(bitmap)
             }
 
 
         }
     }
+
+    override fun setMenuPosOnImage(bitmap: Bitmap) {
+        menuCaptureBinding.imgPicture.setImageBitmap(bitmap)
+    }
+
+
     private fun exifOrientationToDegrees(exifOrientation: Int): Int {
         if(exifOrientation == ExifInterface.ORIENTATION_ROTATE_90) {
             return 90
@@ -251,6 +251,7 @@ class MenuCaptureActivity : AppCompatActivity() {
         }
         return 0
     }
+
     private fun rotate(bitmap: Bitmap, degree: Float): Bitmap {
         val matrix = Matrix()
         matrix.postRotate(degree)
