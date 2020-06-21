@@ -23,6 +23,9 @@
         <activity android:name=".feature.foodcapture.FoodSelectActivity" />
         <activity android:name=".feature.foodcapture.FoodCaptureActivity" />
         <activity android:name=".feature.tab.TabActivity" />
+        <activity android:name=".feature.takemenu.MenuCaptureActivity" />
+<!--        -->
+<!--        <activity android:name=".ResultActivity"></activity>-->
         <activity
             android:name=".feature.onboarding.onboardingframe.OnboardingActivity"
             android:screenOrientation="portrait" />
@@ -49,6 +52,14 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="ocr" />
+        <meta-data
+            android:name="com.firebase.ml.cloud.ApiKeyForDebug"
+            android:value="AIzaSyCwJbln-BWBPzROcKcTbJVAwSW37uZEwmg"
+            />
+
     </application>
 
 </manifest>
