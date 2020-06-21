@@ -8,6 +8,7 @@ import com.example.harusikdan.R
 import com.example.harusikdan.databinding.ActivityTabBinding
 import com.example.harusikdan.feature.main.MainFragment
 import com.example.harusikdan.feature.mypage.MyPageFragment
+import com.example.harusikdan.feature.takemenu.CaptureFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class TabActivity : AppCompatActivity(), TabContract.View {
@@ -45,7 +46,7 @@ class TabActivity : AppCompatActivity(), TabContract.View {
             }
             1 -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.main_container, MainFragment.newInstance()).commit()
+                    .replace(R.id.main_container, CaptureFragment.newInstance()).commit()
             }
             2 -> {
                 supportFragmentManager.beginTransaction()
