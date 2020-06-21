@@ -13,6 +13,7 @@ import com.example.harusikdan.data.entity.FoodVO
 import com.example.harusikdan.data.entity.Person
 import com.example.harusikdan.databinding.FragmentMainBinding
 import com.example.harusikdan.feature.foodcapture.FoodCaptureActivity
+import com.example.harusikdan.utils.ImageUtil
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.kotlin.where
@@ -151,6 +152,23 @@ class MainFragment : Fragment(), MainContract.View {
         }else {
             mainBinding.dinnerFoodCalorie.text = "저녁 0Kcal"
             mainBinding.dinnerNut.visibility = View.INVISIBLE
+        }
+
+        if(ImageUtil.BitmapLoadFromFile(selectedDay + "_" + "breakfast") != null) {
+            mainBinding.breakfastImage.setImageBitmap(ImageUtil.BitmapLoadFromFile(selectedDay + "_" + "breakfast"))
+        }else {
+            mainBinding.breakfastImage.setImageBitmap(null)
+        }
+        if(ImageUtil.BitmapLoadFromFile(selectedDay + "_" + "lunch") != null) {
+            mainBinding.lunchImage.setImageBitmap(ImageUtil.BitmapLoadFromFile(selectedDay + "_" + "lunch"))
+        }else {
+            mainBinding.dinnerImage.setImageBitmap(null)
+        }
+
+        if(ImageUtil.BitmapLoadFromFile(selectedDay + "_" + "dinner") != null) {
+            mainBinding.dinnerImage.setImageBitmap(ImageUtil.BitmapLoadFromFile(selectedDay + "_" + "dinner"))
+        } else {
+            mainBinding.dinnerImage.setImageBitmap(null)
         }
 
     }

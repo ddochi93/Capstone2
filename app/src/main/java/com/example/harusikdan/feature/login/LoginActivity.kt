@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.example.harusikdan.R
+import com.example.harusikdan.data.entity.Person
 import com.example.harusikdan.databinding.ActivityLoginBinding
 import com.example.harusikdan.feature.onboarding.onboardingframe.OnboardingActivity
 
@@ -29,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
     fun loginButtonClicked() {
         val intent = Intent(this@LoginActivity, OnboardingActivity::class.java)
         startActivity(intent)
+        Person.id = loginBinding.editId.text.toString()
         finish()
     }
 }

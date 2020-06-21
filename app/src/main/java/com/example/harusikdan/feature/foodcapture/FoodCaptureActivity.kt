@@ -22,8 +22,10 @@ import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import com.eroom.domain.utils.toastShort
 import com.example.harusikdan.R
+import com.example.harusikdan.data.entity.Food
 import com.example.harusikdan.databinding.ActivityFoodCaptureBinding
 import com.example.harusikdan.globalconst.Consts
+import com.example.harusikdan.utils.ImageUtil
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import org.tensorflow.lite.Interpreter
@@ -334,6 +336,7 @@ class FoodCaptureActivity : AppCompatActivity() {
             }
             val rotatedBitmapImg = rotate(bitmap, exifDegree.toFloat())
             activityFoodCaptureBinding.imgPicture.setImageBitmap(rotatedBitmapImg)
+            ImageUtil.PictureSaveToBitmapFile(activityFoodCaptureBinding.imgPicture, Food.date + "_" + Food.mealTime)
             activityFoodCaptureBinding.tensorButton.visibility = View.VISIBLE
         }
 
@@ -344,6 +347,7 @@ class FoodCaptureActivity : AppCompatActivity() {
                 selectedImageUri
             )
             activityFoodCaptureBinding.tensorButton.visibility = View.VISIBLE
+            ImageUtil.PictureSaveToBitmapFile(activityFoodCaptureBinding.imgPicture, Food.date + "_" + Food.mealTime)
         }
     }
 }

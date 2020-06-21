@@ -10,6 +10,7 @@
 
         <ToggleButton
             android:id="@+id/toggleButton6"
+            android:visibility="gone"
             android:layout_width="45dp"
             android:layout_height="40dp"
             android:layout_alignParentStart="true"
@@ -23,6 +24,7 @@
             android:textOn="위" />
 
         <ToggleButton
+            android:visibility="gone"
             android:id="@+id/toggleButton5"
             android:layout_width="45dp"
             android:layout_height="40dp"
@@ -33,8 +35,8 @@
             android:layout_marginTop="451dp"
             android:background="@drawable/button_default_background"
             android:textColor="@color/grey4"
-            android:textOff="장"
-            android:textOn="장" />
+            android:textOff="비만"
+            android:textOn="비만" />
 
         <TextView
             android:id="@+id/text"
@@ -58,17 +60,17 @@
 
         <ToggleButton
             android:id="@+id/toggleButton1"
-            android:layout_width="45dp"
+            android:layout_width="70dp"
             android:layout_height="40dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="332dp"
+            android:layout_marginStart="342dp"
+            android:layout_marginTop="494dp"
             android:background="@drawable/button_default_background"
             android:textColor="@color/grey4"
-            android:textOff="간"
-            android:textOn="간" />
+            android:textOff="신장 질환"
+            android:textOn="신장 질환" />
 
         <ToggleButton
             android:id="@+id/toggleButton2"
@@ -78,13 +80,13 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="356dp"
-            android:layout_marginTop="296dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="447dp"
+            android:layout_marginEnd="340dp"
             android:background="@drawable/button_default_background"
             android:textColor="@color/grey4"
-            android:textOff="심장"
-            android:textOn="심장" />
+            android:textOff="비만"
+            android:textOn="비만" />
 
         <ToggleButton
             android:id="@+id/toggleButton3"
@@ -94,29 +96,29 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
-            android:layout_marginStart="357dp"
-            android:layout_marginTop="353dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="347dp"
+            android:layout_marginEnd="338dp"
             android:background="@drawable/button_default_background"
             android:textColor="@color/grey4"
-            android:textOff="당뇨"
-            android:textOn="당뇨" />
+            android:textOff="고혈압"
+            android:textOn="고혈압" />
 
         <ToggleButton
             android:id="@+id/toggleButton4"
-            android:layout_width="59dp"
+            android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
-            android:layout_marginStart="355dp"
-            android:layout_marginTop="429dp"
-            android:layout_marginEnd="3dp"
+            android:layout_marginStart="332dp"
+            android:layout_marginTop="351dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/button_default_background"
             android:textColor="@color/grey4"
-            android:textOff="콩팥"
-            android:textOn="콩팥" />
+            android:textOff="당뇨"
+            android:textOn="당뇨" />
 
     </RelativeLayout>
 </layout>

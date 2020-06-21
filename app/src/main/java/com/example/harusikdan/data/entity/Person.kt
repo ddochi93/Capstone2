@@ -4,6 +4,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 object Person {
+    var id = ""
     var weight = 0.0
     var height = 0.0
     var gender //4th fragment
