@@ -118,22 +118,6 @@ class FoodCaptureActivity : AppCompatActivity() {
         }
     }
 
-
-    //    @SuppressLint("SimpleDateFormat")
-//    @Throws(IOException::class)
-//    private fun createImageFile(): File? {
-//        val timeStamp =
-//            SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-//        val imageFileName = "TEST_" + timeStamp + "_"
-//        val storageDir: File? = this.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-//        val image = File.createTempFile(
-//            imageFileName,
-//            ".jpg",
-//            storageDir
-//        )
-//        imageFilePath = image.absolutePath
-//        return image
-//    }
     @Throws(IOException::class)
     private fun createImageFile(): File {
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
@@ -348,9 +332,8 @@ class FoodCaptureActivity : AppCompatActivity() {
             } else {
                 exifDegree = 0
             }
-            activityFoodCaptureBinding.imgPicture.setImageBitmap(
-                rotate(bitmap, exifDegree.toFloat())
-            )
+            val rotatedBitmapImg = rotate(bitmap, exifDegree.toFloat())
+            activityFoodCaptureBinding.imgPicture.setImageBitmap(rotatedBitmapImg)
             activityFoodCaptureBinding.tensorButton.visibility = View.VISIBLE
         }
 
