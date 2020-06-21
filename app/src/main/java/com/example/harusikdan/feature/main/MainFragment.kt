@@ -60,9 +60,10 @@ class MainFragment : Fragment(), MainContract.View {
             context?.toastShort(foodDate)
             Food.date = foodDate.trim()
             loadFromDB(foodDate.trim())
+            setNutritionalInfo()
         }
 
-        mainBinding.totalCalorieTv.text = "총 섭취량 0 / ${Person.targetCalorie.toString()}"
+        mainBinding.totalCalorieTv.text = "총 섭취량 0 / ${Person.targetCalorie.toInt()}"
 
     }
 
@@ -74,6 +75,7 @@ class MainFragment : Fragment(), MainContract.View {
         requireContext().toastShort(todayString.toString().trim())
         Food.date = todayString.trim()
         loadFromDB(todayString)
+        setNutritionalInfo()
     }
 
 
@@ -111,6 +113,57 @@ class MainFragment : Fragment(), MainContract.View {
         mainBinding.lunchMenuName.text = lunch?.foodName
         mainBinding.dinnerMenuName.text = dinner?.foodName
 
+
+        if(breakfast != null) {
+            mainBinding.breakfastFoodCalorie.text = "아침 ${breakfast.calorie}Kcal"
+            mainBinding.breakfastNut.visibility = View.VISIBLE
+            mainBinding.breakfastNut.text = "나트륨 : ${breakfast.salt} / 2000mg"
+            Person.calorie += breakfast.calorie
+            Person.carbohydrate += breakfast.carbohydrate
+            Person.protein += breakfast.protein
+            Person.fat += breakfast.fat
+        } else {
+            mainBinding.breakfastFoodCalorie.text = "아침 0Kcal"
+            mainBinding.breakfastNut.visibility = View.INVISIBLE
+        }
+
+        if(lunch != null) {
+            mainBinding.lunchFoodCalorie.text = "점심 ${lunch.calorie}Kcal"
+            mainBinding.lunchNut.visibility = View.VISIBLE
+            mainBinding.lunchNut.text = "나트륨 : ${lunch.salt} / 2000mg"
+            Person.calorie += lunch.calorie
+            Person.carbohydrate += lunch.carbohydrate
+            Person.protein += lunch.protein
+            Person.fat += lunch.fat
+        } else {
+            mainBinding.lunchFoodCalorie.text = "점심 0Kcal"
+            mainBinding.lunchNut.visibility = View.INVISIBLE
+        }
+
+        if(dinner != null) {
+            mainBinding.dinnerFoodCalorie.text = "저녁 ${dinner.calorie}Kcal"
+            mainBinding.dinnerNut.visibility = View.VISIBLE
+            mainBinding.dinnerNut.text = "나트륨 : ${dinner.salt} / 2000mg"
+            Person.calorie += dinner.calorie
+            Person.carbohydrate += dinner.carbohydrate
+            Person.protein += dinner.protein
+            Person.fat += dinner.fat
+        }else {
+            mainBinding.dinnerFoodCalorie.text = "저녁 0Kcal"
+            mainBinding.dinnerNut.visibility = View.INVISIBLE
+        }
+
+    }
+
+    private fun setNutritionalInfo() {
+        mainBinding.totalCalorieTv.text = "총 섭취량 ${Person.calorie.toInt()} / ${Person.targetCalorie.toInt()}"
+        mainBinding.totalCarbohydate.text = "${Person.carbohydrate.toInt()}/${(Person.targetCalorie/4 * 0.5).toInt()}g"
+        mainBinding.totalProtein.text = "${Person.protein.toInt()}/${Person.weight}g"
+        mainBinding.totalFat.text = "${Person.fat}/51.3g"
+
+
+        //마지막에 0으로 세팅
+        Person.clear()
     }
 
     override fun onDestroy() {

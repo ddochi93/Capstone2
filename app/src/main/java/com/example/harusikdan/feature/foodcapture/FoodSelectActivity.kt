@@ -20,7 +20,6 @@ import org.koin.android.ext.android.get
 class FoodSelectActivity : AppCompatActivity(), FoodSelectContract.View {
     private lateinit var foodSelectBinding: ActivityFoodSelectBinding
     private lateinit var presenter: FoodSelectPresenter
-    private val realm = Realm.getDefaultInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +55,6 @@ class FoodSelectActivity : AppCompatActivity(), FoodSelectContract.View {
                 buttonView.setTextColor(ContextCompat.getColor(this, R.color.orgDefault))
                 Food.foodName = buttonView.text.toString().trim()
                 presenter.getFoodInfoByFoodName(Food.foodName.toString())
-                insertFoodToDb()
             } else {
                 buttonView.background = ContextCompat.getDrawable(this, R.drawable.button_default_background)
                 buttonView.setTextColor(ContextCompat.getColor(this, R.color.grey4))
@@ -71,7 +69,6 @@ class FoodSelectActivity : AppCompatActivity(), FoodSelectContract.View {
                 buttonView.setTextColor(ContextCompat.getColor(this, R.color.orgDefault))
                 Food.foodName = buttonView.text.toString().trim()
                 presenter.getFoodInfoByFoodName(Food.foodName.toString())
-                insertFoodToDb()
             } else {
                 buttonView.background = ContextCompat.getDrawable(this, R.drawable.button_default_background)
                 buttonView.setTextColor(ContextCompat.getColor(this, R.color.grey4))
@@ -85,7 +82,6 @@ class FoodSelectActivity : AppCompatActivity(), FoodSelectContract.View {
                 buttonView.setTextColor(ContextCompat.getColor(this, R.color.orgDefault))
                 Food.foodName = buttonView.text.toString().trim()
                 presenter.getFoodInfoByFoodName(Food.foodName.toString())
-                insertFoodToDb()
             } else {
                 buttonView.background = ContextCompat.getDrawable(this, R.drawable.button_default_background)
                 buttonView.setTextColor(ContextCompat.getColor(this, R.color.grey4))
@@ -99,7 +95,6 @@ class FoodSelectActivity : AppCompatActivity(), FoodSelectContract.View {
                 buttonView.setTextColor(ContextCompat.getColor(this, R.color.orgDefault))
                 Food.foodName = buttonView.text.toString().trim()
                 presenter.getFoodInfoByFoodName(Food.foodName.toString())
-                insertFoodToDb()
             } else {
                 buttonView.background = ContextCompat.getDrawable(this, R.drawable.button_default_background)
                 buttonView.setTextColor(ContextCompat.getColor(this, R.color.grey4))
@@ -107,32 +102,8 @@ class FoodSelectActivity : AppCompatActivity(), FoodSelectContract.View {
         }
     }
 
-    private fun insertFoodToDb() {
-        realm.beginTransaction()
-
-        val food = realm.createObject<FoodVO>(nextId())
-        food.foodName = Food.foodName.toString()
-        food.date = Food.date.toString()
-        food.mealTime = Food.mealTime.toString()
-
-        realm.commitTransaction()
-        this.toastShort("id = ${food.id}  : ${food.foodName}, ${food.date} , ${food.mealTime}")
-        AlertDialog.Builder(this)
-            .setTitle("내용이 추가되었습니다.")
-            .setPositiveButton("확인") { _, _ -> finish()}
-            .show()
+    override fun finishView() {
+        finish()
     }
 
-    private fun nextId(): Int {
-        val maxId = realm.where<FoodVO>().max("id")
-        if(maxId != null) {
-            return maxId.toInt() + 1
-        }
-        return 0
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        realm.close()
-    }
 }

@@ -143,6 +143,7 @@
                                 </LinearLayout>
 
                                 <TextView
+                                    android:id="@+id/total_carbohydate"
                                     android:layout_width="100dp"
                                     android:layout_height="wrap_content"
                                     android:paddingLeft="9dp"
@@ -187,6 +188,7 @@
                                 </LinearLayout>
 
                                 <TextView
+                                    android:id="@+id/total_protein"
                                     android:layout_width="100dp"
                                     android:layout_height="wrap_content"
                                     android:paddingLeft="9dp"
@@ -209,7 +211,7 @@
                                     android:id="@+id/fat"
                                     android:layout_width="100dp"
                                     android:layout_height="wrap_content"
-                                    android:text="단백질"
+                                    android:text="지방"
                                     android:textColor="@color/colorBlack"
                                     android:textSize="14sp" />
 
@@ -231,6 +233,7 @@
                                 </LinearLayout>
 
                                 <TextView
+                                    android:id="@+id/total_fat"
                                     android:layout_width="100dp"
                                     android:layout_height="wrap_content"
                                     android:paddingLeft="9dp"
@@ -278,17 +281,30 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
-                                android:id="@+id/food_calorie"
+                                android:id="@+id/breakfast_food_calorie"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="아침 0Kcal"
                                 android:textColor="@color/orgDefault"
                                 android:textSize="16sp"
+                                android:layout_marginTop="10dp"
                                 app:layout_constraintHorizontal_bias="0.1"
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/breakfast_nut"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="나트륨 : 100 / 1800"
+                                android:visibility="invisible"
+                                android:layout_marginTop="15dp"
+                                app:layout_constraintHorizontal_bias="0.9"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.3" />
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                />
                             <TextView
                                 android:id="@+id/breakfast_menu_name"
                                 android:layout_width="wrap_content"
@@ -339,17 +355,17 @@
                             app:layout_constraintTop_toBottomOf="@id/breakfast_layout">
 
                             <TextView
-                                android:id="@+id/food_lunch_calorie"
+                                android:id="@+id/lunch_food_calorie"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="점심 0Kcal"
+                                android:layout_marginTop="10dp"
                                 android:textColor="@color/orgDefault"
                                 android:textSize="16sp"
                                 app:layout_constraintHorizontal_bias="0.1"
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.3" />
+                                app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
                                 android:id="@+id/lunch_menu_name"
@@ -363,6 +379,19 @@
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"
                                 android:layout_marginTop="260dp"
+                                />
+
+                            <TextView
+                                android:id="@+id/lunch_nut"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="나트륨 : 100 / 1800"
+                                android:visibility="invisible"
+                                android:layout_marginTop="15dp"
+                                app:layout_constraintHorizontal_bias="0.9"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
                                 />
 
                             <androidx.constraintlayout.widget.ConstraintLayout
@@ -403,9 +432,10 @@
                             app:layout_constraintBottom_toBottomOf="parent">
 
                             <TextView
-                                android:id="@+id/food_dinner_calorie"
+                                android:id="@+id/dinner_food_calorie"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
                                 android:text="저녁 0Kcal"
                                 android:textColor="@color/orgDefault"
                                 android:textSize="16sp"
@@ -426,6 +456,19 @@
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"
                                 android:layout_marginTop="260dp"
+                                />
+
+                            <TextView
+                                android:id="@+id/dinner_nut"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="나트륨 : 100 / 1800"
+                                android:visibility="invisible"
+                                android:layout_marginTop="15dp"
+                                app:layout_constraintHorizontal_bias="0.9"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
                                 />
 
                             <androidx.constraintlayout.widget.ConstraintLayout

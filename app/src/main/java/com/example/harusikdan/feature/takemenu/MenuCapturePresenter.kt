@@ -63,6 +63,7 @@ class MenuCapturePresenter(
 
                     bitmap2 = drawRect(it.leftTop!!.x, it.leftTop!!.y, it.rightBottom!!.x, it.rightBottom!!.y, bitmap, it.color!!)
                 }
+                MenuPosInfo.menuPosInfo.clear()
                 view.setMenuPosOnImage(bitmap2)
             }, {
                 Log.e("MenuCapturePresenter", "server error")
