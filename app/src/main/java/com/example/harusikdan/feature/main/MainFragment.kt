@@ -154,19 +154,19 @@ class MainFragment : Fragment(), MainContract.View {
             mainBinding.dinnerNut.visibility = View.INVISIBLE
         }
 
-        if(ImageUtil.BitmapLoadFromFile(selectedDay + "_" + "breakfast") != null) {
-            mainBinding.breakfastImage.setImageBitmap(ImageUtil.BitmapLoadFromFile(selectedDay + "_" + "breakfast"))
+        if(ImageUtil.BitmapLoadFromFile(selectedDay + "__" + "breakfast") != null) {
+            mainBinding.breakfastImage.setImageBitmap(ImageUtil.BitmapLoadFromFile(selectedDay + "__" + "breakfast"))
         }else {
             mainBinding.breakfastImage.setImageBitmap(null)
         }
-        if(ImageUtil.BitmapLoadFromFile(selectedDay + "_" + "lunch") != null) {
-            mainBinding.lunchImage.setImageBitmap(ImageUtil.BitmapLoadFromFile(selectedDay + "_" + "lunch"))
+        if(ImageUtil.BitmapLoadFromFile(selectedDay + "__" + "lunch") != null) {
+            mainBinding.lunchImage.setImageBitmap(ImageUtil.BitmapLoadFromFile(selectedDay + "__" + "lunch"))
         }else {
             mainBinding.dinnerImage.setImageBitmap(null)
         }
 
-        if(ImageUtil.BitmapLoadFromFile(selectedDay + "_" + "dinner") != null) {
-            mainBinding.dinnerImage.setImageBitmap(ImageUtil.BitmapLoadFromFile(selectedDay + "_" + "dinner"))
+        if(ImageUtil.BitmapLoadFromFile(selectedDay + "__" + "dinner") != null) {
+            mainBinding.dinnerImage.setImageBitmap(ImageUtil.BitmapLoadFromFile(selectedDay + "__" + "dinner"))
         } else {
             mainBinding.dinnerImage.setImageBitmap(null)
         }

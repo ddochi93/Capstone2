@@ -54,12 +54,10 @@ class MyPageFragment : Fragment(), MyPageContract.View {
         data.add("키 : ${Person.height}cm")
         data.add("몸무게 : ${Person.weight}kg")
         when(Person.activity) {
-            0 -> data.add("활동성 : 비활동적")
-            1 -> data.add("활동성 : 매우 활동적")
-            2 -> data.add("활동성 : 활동적")
-            3 -> data.add("활동성 : 저 활동적")
-            4 -> data.add("활동성 : 비활동적")
-            else -> data.add("비활동적")
+            40 -> data.add("활동성 : 매우 활동적")
+            33 -> data.add("활동성 : 활동적")
+            25 -> data.add("활동성 : 저 활동적")
+            20 -> data.add("활동성 : 비활동적")
         }
 
         var diseaseString = ""

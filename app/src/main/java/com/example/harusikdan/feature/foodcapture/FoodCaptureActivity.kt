@@ -61,7 +61,7 @@ class FoodCaptureActivity : AppCompatActivity() {
         var permis = object : PermissionListener {
             //            어떠한 형식을 상속받는 익명 클래스의 객체를 생성하기 위해 다음과 같이 작성
             override fun onPermissionGranted() {
-                applicationContext.toastShort("권한 허가")
+                //applicationContext.toastShort("권한 허가")
             }
 
             override fun onPermissionDenied(deniedPermissions: ArrayList<String>?) {
@@ -336,7 +336,7 @@ class FoodCaptureActivity : AppCompatActivity() {
             }
             val rotatedBitmapImg = rotate(bitmap, exifDegree.toFloat())
             activityFoodCaptureBinding.imgPicture.setImageBitmap(rotatedBitmapImg)
-            ImageUtil.PictureSaveToBitmapFile(activityFoodCaptureBinding.imgPicture, Food.date + "_" + Food.mealTime)
+            ImageUtil.PictureSaveToBitmapFile(activityFoodCaptureBinding.imgPicture, Food.date + "__" + Food.mealTime)
             activityFoodCaptureBinding.tensorButton.visibility = View.VISIBLE
         }
 
@@ -347,7 +347,7 @@ class FoodCaptureActivity : AppCompatActivity() {
                 selectedImageUri
             )
             activityFoodCaptureBinding.tensorButton.visibility = View.VISIBLE
-            ImageUtil.PictureSaveToBitmapFile(activityFoodCaptureBinding.imgPicture, Food.date + "_" + Food.mealTime)
+            ImageUtil.PictureSaveToBitmapFile(activityFoodCaptureBinding.imgPicture, Food.date + "__" + Food.mealTime)
         }
     }
 }

@@ -103,7 +103,7 @@ class FoodSelectActivity : AppCompatActivity(), FoodSelectContract.View {
     }
 
     override fun finishView() {
-        finish()
+        finishAffinity()
     }
 
 }

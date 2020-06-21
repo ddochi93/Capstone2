@@ -16,17 +16,25 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true">
-        <activity android:name=".feature.foodcapture.FoodSelectActivity" />
-        <activity android:name=".feature.foodcapture.FoodCaptureActivity" />
-        <activity android:name=".feature.tab.TabActivity" />
-        <activity android:name=".feature.takemenu.MenuCaptureActivity" />
-<!--        -->
-<!--        <activity android:name=".ResultActivity"></activity>-->
+        <activity
+            android:name=".feature.foodcapture.FoodSelectActivity"
+            android:screenOrientation="portrait"
+            android:taskAffinity="com.task.FoodCapture" />
+        <activity
+            android:name=".feature.foodcapture.FoodCaptureActivity"
+            android:screenOrientation="portrait"
+            android:taskAffinity="com.task.FoodCapture" />
+        <activity
+            android:name=".feature.tab.TabActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.takemenu.MenuCaptureActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".feature.onboarding.onboardingframe.OnboardingActivity"
             android:screenOrientation="portrait" />
@@ -39,7 +47,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".dialog.HaruDialogActivity" />
+        <activity
+            android:name=".dialog.HaruDialogActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
@@ -53,13 +63,13 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" />
         <meta-data
             android:name="com.firebase.ml.cloud.ApiKeyForDebug"
-            android:value="AIzaSyCwJbln-BWBPzROcKcTbJVAwSW37uZEwmg"
-            />
+            android:value="AIzaSyCwJbln-BWBPzROcKcTbJVAwSW37uZEwmg" />
 
     </application>
 
