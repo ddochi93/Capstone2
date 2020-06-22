@@ -336,7 +336,7 @@ class FoodCaptureActivity : AppCompatActivity() {
             }
             val rotatedBitmapImg = rotate(bitmap, exifDegree.toFloat())
             activityFoodCaptureBinding.imgPicture.setImageBitmap(rotatedBitmapImg)
-            ImageUtil.PictureSaveToBitmapFile(activityFoodCaptureBinding.imgPicture, Food.date + "__" + Food.mealTime)
+            ImageUtil.PictureSaveToBitmapFile(activityFoodCaptureBinding.imgPicture, Food.date + "___" + Food.mealTime)
             activityFoodCaptureBinding.tensorButton.visibility = View.VISIBLE
         }
 
@@ -347,7 +347,7 @@ class FoodCaptureActivity : AppCompatActivity() {
                 selectedImageUri
             )
             activityFoodCaptureBinding.tensorButton.visibility = View.VISIBLE
-            ImageUtil.PictureSaveToBitmapFile(activityFoodCaptureBinding.imgPicture, Food.date + "__" + Food.mealTime)
+            ImageUtil.PictureSaveToBitmapFile(activityFoodCaptureBinding.imgPicture, Food.date + "___" + Food.mealTime)
         }
     }
 }

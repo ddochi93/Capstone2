@@ -154,19 +154,19 @@ class MainFragment : Fragment(), MainContract.View {
             mainBinding.dinnerNut.visibility = View.INVISIBLE
         }
 
-        if(ImageUtil.BitmapLoadFromFile(selectedDay + "__" + "breakfast") != null) {
-            mainBinding.breakfastImage.setImageBitmap(ImageUtil.BitmapLoadFromFile(selectedDay + "__" + "breakfast"))
+        if(ImageUtil.BitmapLoadFromFile(selectedDay + "___" + "breakfast") != null) {
+            mainBinding.breakfastImage.setImageBitmap(ImageUtil.BitmapLoadFromFile(selectedDay + "___" + "breakfast"))
         }else {
             mainBinding.breakfastImage.setImageBitmap(null)
         }
-        if(ImageUtil.BitmapLoadFromFile(selectedDay + "__" + "lunch") != null) {
-            mainBinding.lunchImage.setImageBitmap(ImageUtil.BitmapLoadFromFile(selectedDay + "__" + "lunch"))
+        if(ImageUtil.BitmapLoadFromFile(selectedDay + "___" + "lunch") != null) {
+            mainBinding.lunchImage.setImageBitmap(ImageUtil.BitmapLoadFromFile(selectedDay + "___" + "lunch"))
         }else {
-            mainBinding.dinnerImage.setImageBitmap(null)
+            mainBinding.lunchImage.setImageBitmap(null)
         }
 
-        if(ImageUtil.BitmapLoadFromFile(selectedDay + "__" + "dinner") != null) {
-            mainBinding.dinnerImage.setImageBitmap(ImageUtil.BitmapLoadFromFile(selectedDay + "__" + "dinner"))
+        if(ImageUtil.BitmapLoadFromFile(selectedDay + "___" + "dinner") != null) {
+            mainBinding.dinnerImage.setImageBitmap(ImageUtil.BitmapLoadFromFile(selectedDay + "___" + "dinner"))
         } else {
             mainBinding.dinnerImage.setImageBitmap(null)
         }
@@ -174,7 +174,7 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     private fun setNutritionalInfo() {
-        mainBinding.totalCalorieTv.text = "총 섭취량 ${Person.calorie.toInt()} / ${Person.targetCalorie.toInt()}"
+        mainBinding.totalCalorieTv.text = "총 섭취량 ${Person.calorie.toInt()} / ${Person.targetCalorie.toInt()}Kcal"
         mainBinding.totalCarbohydate.text = "${Person.carbohydrate.toInt()}/${(Person.targetCalorie/4 * 0.5).toInt()}g"
         mainBinding.totalProtein.text = "${Person.protein.toInt()}/${Person.weight}g"
         mainBinding.totalFat.text = "${Person.fat}/51.3g"

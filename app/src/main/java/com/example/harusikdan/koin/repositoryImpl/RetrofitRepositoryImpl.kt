@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class AccessRetrofitRepositoryImpl(): AccessRetrofitRepository {
     override fun getAccessRetrofit(): Retrofit {
-        val baseUrl: String = Consts.BASE_URL
+        val  baseUrl: String = Consts.BASE_URL
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
