@@ -20,16 +20,12 @@ import io.realm.kotlin.where
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
-import kotlin.collections.ArrayList
-
 
 class MainFragment : Fragment(), MainContract.View {
     private lateinit var mainBinding: FragmentMainBinding
     private lateinit var presenter: MainPresenter
     private val realm = Realm.getDefaultInstance()
 
-    //private lateinit var mFoodInfoAdapter: FoodInfoAdapter
-    private var mFoodList: ArrayList<Food> = ArrayList()
 
     companion object {
         @JvmStatic
@@ -174,12 +170,16 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     private fun setNutritionalInfo() {
-        mainBinding.totalCalorieTv.text = "총 섭취량 ${Person.calorie.toInt()} / ${Person.targetCalorie.toInt()}Kcal"
-        mainBinding.totalCarbohydate.text = "${Person.carbohydrate.toInt()}/${(Person.targetCalorie/4 * 0.5).toInt()}g"
-        mainBinding.totalProtein.text = "${Person.protein.toInt()}/${Person.weight}g"
+        mainBinding.totalCalorieTv.text = "총 섭취량 ${Person.calorie} / ${Person.targetCalorie}Kcal"
+        mainBinding.totalCarbohydate.text = "${Person.carbohydrate}/${(Person.targetCalorie/4 * 0.5)}g"
+        mainBinding.totalProtein.text = "${Person.protein}/${Person.weight}g"
         mainBinding.totalFat.text = "${Person.fat}/51.3g"
 
 
+        mainBinding.totalCalorieProgressBar.progress = ((Person.calorie / Person.targetCalorie) * mainBinding.totalCalorieProgressBar.max).toInt()
+        mainBinding.carbohydrateProgressBar.progress = ((Person.carbohydrate / (Person.targetCalorie/4 * 0.5)) * mainBinding.carbohydrateProgressBar.max).toInt()
+        mainBinding.proteinProgressBar.progress = ((Person.protein / (Person.weight)) * mainBinding.proteinProgressBar.max).toInt()
+        mainBinding.fatProgressBar.progress = ((Person.fat / 51.3) * mainBinding.fatProgressBar.max).toInt()
         //마지막에 0으로 세팅
         Person.clear()
     }
@@ -187,7 +187,6 @@ class MainFragment : Fragment(), MainContract.View {
     override fun onDestroy() {
         super.onDestroy()
         realm.close()
-
     }
 
 }

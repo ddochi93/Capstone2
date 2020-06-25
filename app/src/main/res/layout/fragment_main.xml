@@ -92,6 +92,7 @@
                             app:layout_constraintTop_toBottomOf="@id/total_calorie_tv">
                             <!-- 프로그레스바 -->
                             <ProgressBar
+                                android:id="@+id/total_calorie_progress_bar"
                                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="12dp"
@@ -134,6 +135,7 @@
                                     android:paddingBottom="8dp">
 
                                     <ProgressBar
+                                        android:id="@+id/carbohydrate_progress_bar"
                                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                                         android:layout_width="match_parent"
                                         android:layout_height="12dp"
@@ -179,6 +181,7 @@
                                     android:paddingBottom="8dp">
 
                                     <ProgressBar
+                                        android:id="@+id/protein_progress_bar"
                                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                                         android:layout_width="match_parent"
                                         android:layout_height="12dp"
@@ -224,6 +227,7 @@
                                     android:paddingBottom="8dp">
 
                                     <ProgressBar
+                                        android:id="@+id/fat_progress_bar"
                                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                                         android:layout_width="match_parent"
                                         android:layout_height="12dp"
